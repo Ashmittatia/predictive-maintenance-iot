@@ -1,0 +1,79 @@
+# ── Python ────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
+
+# ── Virtual environments ──────────────────────────────
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# ── Jupyter ───────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# ── Trained models (large binaries) ──────────────────
+models/*.keras
+models/*.pkl
+models/*.h5
+models/*.onnx
+# Keep label map and feature cols (small, version-controlled)
+!models/fault_label_map.pkl
+
+# ── Generated data (reproducible via generate_dataset.py) ─
+data/industrial.csv
+data/smarthome.csv
+data/combined.csv
+data/iot_maintenance.db
+
+# ── Logs ─────────────────────────────────────────────
+logs/
+*.log
+
+# ── OS ───────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ── IDE ───────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.settings/
+
+# ── Docker ────────────────────────────────────────────
+.dockerignore
+
+# ── Secrets / env ─────────────────────────────────────
+.env
+.env.*
+!.env.example
+secrets.json

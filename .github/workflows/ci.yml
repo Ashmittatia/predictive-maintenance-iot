@@ -1,0 +1,72 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, dev ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.11"]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy pandas scikit-learn scipy joblib fastapi pydantic pytest
+
+      - name: Generate dataset
+        run: python data/generate_dataset.py
+
+      - name: Run preprocessing smoke test
+        run: |
+          python -c "
+          import sys; sys.path.insert(0, '.')
+          import pandas as pd
+          from utils.preprocessing import add_rolling_features, add_rms, add_rate_of_change, build_sequences
+          df = pd.read_csv('data/combined.csv')
+          df2 = add_rolling_features(df.head(500))
+          df2 = add_rms(df2)
+          df2 = add_rate_of_change(df2)
+          feature_cols = ['vibration','temperature','current','pressure','rpm','humidity','power_w']
+          X, y = build_sequences(df2.head(300), feature_cols, target_col='fault_label', window=30, step=5)
+          assert X.ndim == 3 and X.shape[1] == 30
+          print('Preprocessing OK — sequences:', X.shape)
+          "
+
+      - name: Train lightweight models (CI mode)
+        run: |
+          python -c "
+          import sys; sys.path.insert(0, '.')
+          import pandas as pd
+          import numpy as np
+          from utils.preprocessing import add_rolling_features, add_rms, add_rate_of_change
+          from models.fault_classifier import train_classifier
+          from models.rul_estimator import train_rul_model
+
+          df = pd.read_csv('data/combined.csv')
+          df2 = add_rolling_features(df.head(1000))
+          df2 = add_rms(df2)
+          df2 = add_rate_of_change(df2)
+          feature_cols = ['vibration','temperature','current','pressure','rpm','humidity','power_w']
+          train_classifier(df2, feature_cols, n_estimators=10)
+          train_rul_model(df2, feature_cols)
+          print('CI model training OK')
+          "
+
+      - name: Run unit tests
+        run: python -m pytest tests/ -v --tb=short -k "not TestAutoencoder"
+        # Autoencoder tests skipped in CI (requires TensorFlow + trained model)

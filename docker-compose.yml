@@ -1,0 +1,64 @@
+version: "3.9"
+
+services:
+
+  # MQTT Broker
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: pm_mosquitto
+    ports:
+      - "1883:1883"
+      - "9001:9001"
+    volumes:
+      - ./docker/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    restart: unless-stopped
+
+  # FastAPI inference server
+  api:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    container_name: pm_api
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      - mosquitto
+    restart: unless-stopped
+    command: uvicorn api.main:app --host 0.0.0.0 --port 8000
+
+  # Streamlit dashboard
+  dashboard:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.dashboard
+    container_name: pm_dashboard
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    environment:
+      - API_URL=http://api:8000
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      - api
+    restart: unless-stopped
+    command: streamlit run dashboard/app.py --server.address 0.0.0.0
+
+  # IoT sensor simulator
+  simulator:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.api
+    container_name: pm_simulator
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      - api
+    restart: unless-stopped
+    command: python simulator/sensor_simulator.py --mode http --api http://api:8000 --interval 2
