@@ -315,7 +315,7 @@ MIT License — see [LICENSE](LICENSE) for details.
 ## 👤 Author
 
 **Ashmit Tatia**  
-B.Tech AI & ML · NMIMS University, Mumbai  
+B.Tech AI & ML  
 [GitHub](https://github.com/YOUR_USERNAME) · [LinkedIn](https://linkedin.com/in/YOUR_PROFILE)
 
 ---
