@@ -328,7 +328,7 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 **Ashmit Tatia**  
 B.Tech AI & ML  
-[GitHub](https://github.com/YOUR_USERNAME) · [LinkedIn](https://linkedin.com/in/YOUR_PROFILE)
+[GitHub](https://github.com/Ashmittatia) · [LinkedIn](https://linkedin.com/in/Ashmittatia)
 
 ---
 
