@@ -230,7 +230,7 @@ with st.sidebar:
     refresh_sec  = st.slider("Interval (s)", 3, 30, 5)
 
     st.markdown("---")
-    st.caption("PredMaint v1.0 · Portfolio project\nIndustrial + Smart Home ML monitoring")
+    st.caption("PredMaint v2.3")
 
 
 # ── Auto-refresh ──────────────────────────────────────────────────
