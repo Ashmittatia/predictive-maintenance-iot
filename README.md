@@ -22,9 +22,21 @@
 |----------|-----------------|
 | Fleet health grid · anomaly heatmap · KPI cards | Sensor time series · RUL gauge · fault probabilities |
 
+<img width="1569" height="947" alt="image" src="https://github.com/user-attachments/assets/d1b24181-fdda-446d-ba33-50365fabfff5" />
+<img width="1523" height="353" alt="image" src="https://github.com/user-attachments/assets/8fa4d1e4-ecac-48fc-ac4b-1ae803394ca2" />
+<img width="325" height="843" alt="image" src="https://github.com/user-attachments/assets/23c09236-d089-44bc-ab16-d2b6108317b7" />
+
+
 | Alert Center | Model Performance |
 |--------------|------------------|
 | Severity-ranked alerts · 24hr trend | Training curves · confusion matrix · actual vs predicted RUL |
+
+<img width="1545" height="841" alt="image" src="https://github.com/user-attachments/assets/f16b5234-c81f-42dc-907c-0712489a8250" />
+<img width="1540" height="722" alt="image" src="https://github.com/user-attachments/assets/8e00bcdb-a576-48dc-98b8-dcf64ebf7ba3" />
+<img width="1523" height="736" alt="image" src="https://github.com/user-attachments/assets/202e15c7-e18d-49c9-95ac-09bdeae74f12" />
+<img width="1513" height="554" alt="image" src="https://github.com/user-attachments/assets/68fa04e3-dbd4-4082-b9f2-3a0028436f43" />
+
+
 
 ---
 
