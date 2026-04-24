@@ -24,7 +24,7 @@
 
 <img width="1569" height="947" alt="image" src="https://github.com/user-attachments/assets/d1b24181-fdda-446d-ba33-50365fabfff5" />
 <img width="1523" height="353" alt="image" src="https://github.com/user-attachments/assets/8fa4d1e4-ecac-48fc-ac4b-1ae803394ca2" />
-<img width="325" height="843" alt="image" src="https://github.com/user-attachments/assets/23c09236-d089-44bc-ab16-d2b6108317b7" />
+<img width="1510" height="850" alt="image" src="https://github.com/user-attachments/assets/3f8038cf-a914-4af9-8f10-c721bbf0065a" />
 
 
 | Alert Center | Model Performance |
